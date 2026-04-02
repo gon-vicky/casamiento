@@ -1,0 +1,1086 @@
+/* =========================================
+   ESTILOS POR SISTEMA OPERATIVO
+   (Clases: .os-ios, .os-mac, .os-android, .os-windows)
+   Ajustar aquí si algo se ve distinto en cada SO
+   ========================================= */
+
+/* Ejemplo iOS/macOS */
+/* .os-ios .top-icon { width: 50px; } */
+/* .os-mac h1.names { font-size: 1.5rem; } */
+
+/* Ejemplo Android/Windows */
+/* .os-android .text-caps { font-size: 0.65rem; } */
+/* .os-windows .container { width: 68%; } */
+
+/* =========================================
+   FUENTE COPPERPLATE GOTHIC 32 BC (local)
+   ========================================= */
+@font-face {
+    font-family: 'Copperplate Gothic 32 BC';
+    src: url('../fonts/copperplate-gothic-32bc.woff2') format('woff2'),
+         url('../fonts/copperplate-gothic-32bc.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* =========================================
+   VARIABLES Y CONFIGURACIÓN BASE
+   ========================================= */
+   :root {
+    --color-text: #6b584a;
+    --color-bg: #faf7f0;
+    --color-btn: #e9e3db;
+    --color-gris-oscuro: rgba(109, 91, 74, 0.05);
+    --font-main: 'Copperplate Gothic 32 BC', Georgia, 'Times New Roman', serif;
+    --space: 16px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Base fija: 1rem = 16px en todos los dispositivos (iPhone, Android, etc.) */
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    overflow-x: hidden;
+}
+
+/* Scroll snap: al hacer scroll, encaja en cada "página" */
+body {
+    scroll-snap-type: y proximity;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: var(--color-bg);
+    font-family: var(--font-main);
+    color: var(--color-text);
+    text-align: center;
+    line-height: 2.34;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+    /* CORRECCIÓN DE NÚMEROS: lining-nums para altura uniforme */
+    font-variant-numeric: lining-nums;
+    -moz-font-feature-settings: "lnum";
+    -webkit-font-feature-settings: "lnum";
+    font-feature-settings: "lnum";
+}
+
+/* CONTENEDOR PRINCIPAL: Controla el aire lateral (15% margen a los lados) */
+.container {
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 45px 25px;
+}
+
+/* Páginas: solo la primera ocupa el viewport, el resto fluye con su contenido */
+.page {
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    scroll-snap-align: start;
+}
+.page-1 {
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding-bottom: 32px;
+    justify-content: center;
+}
+
+.first-screen {
+    --space: 20px;
+}
+
+
+/* Flecha indicadora de scroll: junto a "Esperamos..." */
+.scroll-indicator {
+    margin-top: calc(var(--space) * 0.5);
+    padding: 6px 0 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-text);
+    opacity: 0.6;
+    text-decoration: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+.scroll-indicator:hover {
+    opacity: 1;
+    color: var(--color-text);
+}
+.scroll-indicator:focus,
+.scroll-indicator:active {
+    outline: none;
+}
+.scroll-indicator .bi {
+    font-size: 20px;
+    animation: scroll-bounce 2s ease-in-out infinite;
+}
+.scroll-indicator--hidden {
+    opacity: 0 !important;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+#confirmar {
+    scroll-margin-top: 0;
+}
+
+/* Página 2: última página, fondo gris hasta el final */
+.page-2 {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding: 0 0 100px;
+    background-color: var(--color-gris-oscuro);
+    box-sizing: border-box;
+}
+
+.page-2 .maps-confirm-block,
+.page-2 .locations-wrapper {
+    background-color: transparent;
+}
+
+.page-2 .final-msg {
+    margin-top: 50px;
+}
+
+.page-2-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 30px 0 24px;
+}
+
+.page-2-screen .scroll-indicator {
+    margin-top: calc(var(--space) * 0.5);
+}
+
+@keyframes scroll-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+}
+
+/* Hero: altura de viewport móvil */
+.section.hero {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.section.hero:not(.header-parents) {
+    margin-top: -45px;
+    padding-top: 20px;
+}
+
+/* =========================================
+   TIPOGRAFÍA Y ELEMENTOS VISUALES
+   ========================================= */
+h1.names {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.64;
+    margin: 18px 0 12px;
+    text-transform: uppercase;
+}
+
+.and {
+    font-size: 16px;
+    display: block;
+    margin: 16px 0 8px;
+}
+
+.text-caps {
+    text-transform: uppercase;
+    font-size: 11px;
+    margin-bottom: var(--space);
+    line-height: 2.34;
+    border: none;
+}
+
+.text-caps.text-smaller {
+    font-size: 12px;
+}
+
+
+.time-sep {
+    font-weight: 700;
+}
+
+.main-weekday {
+    font-size: 15px;
+    font-weight: 400;
+    font-style: italic;
+    text-transform: capitalize;
+    margin-bottom: 4px;
+    letter-spacing: 0.02em;
+}
+
+.main-date {
+    font-weight: 700;
+    font-size: 17px;
+    margin-bottom: var(--space);
+    line-height: 2.08;
+    text-transform: uppercase;
+    border: none;
+}
+
+/* Espacio uniforme entre todas las líneas: igual arriba y abajo de cada divider */
+.divider {
+    margin: 0 auto var(--space);
+}
+
+h1.names:has(+ .divider),
+.text-caps:has(+ .divider) {
+    margin-bottom: var(--space);
+}
+
+.divider-line {
+    width: 80px;
+    height: 0;
+    border: none;
+    border-top: 2px solid var(--color-text);
+    opacity: 0.5;
+}
+
+.divider--no-line.divider-line {
+    border: none;
+    opacity: 0;
+}
+
+/* Divider ceremonia/recepción: igual espacio arriba y abajo */
+.section.details > p:first-of-type + .divider.divider--balanced {
+    margin-top: calc(var(--space) + 8px);
+    margin-bottom: calc(var(--space) + 8px);
+}
+.intro-block:has(.header-parents) .section.details > p:first-of-type + .divider.divider--balanced {
+    margin-top: calc(var(--space) + 20px);
+    margin-bottom: calc(var(--space) + 20px);
+}
+.section.details > p:first-of-type {
+    margin-bottom: 0;
+}
+.text-recepcion {
+    margin-top: 0;
+}
+
+/* Entre Arquerreta y Participamos: espacio moderado */
+.section.hero h1.names:has(+ .divider) {
+    margin-bottom: 10px;
+}
+.section.hero .divider.divider--no-line {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/* Compensar espacio: dividers invisibles mantienen/amplían el espacio vertical */
+.first-screen .divider.divider--no-line {
+    margin-bottom: calc(var(--space) + 14px);
+}
+
+.top-icon {
+    display: block;
+    width: 62px;
+    height: auto;
+    margin: 16px auto 32px;
+}
+
+/* =========================================
+   LAYOUT PADRES (gonyvickypadres)
+   ========================================= */
+/* Primera página centrada verticalmente (menos contenido) */
+.page-1:has(.header-parents) {
+    justify-content: flex-start;
+    min-height: auto;
+}
+.first-screen:has(.header-parents) {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex: 1;
+    min-height: auto;
+    padding-top: 6vh;
+    padding-bottom: env(safe-area-inset-bottom);
+}
+.section.hero.header-parents {
+    min-height: auto;
+}
+.header-parents .top-icon {
+    margin-top: 2px;
+}
+
+/* Padres debajo de la imagen, uno a cada lado */
+.header-parents .parents-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 20px;
+    margin-bottom: var(--space);
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding: 0 8px;
+    box-sizing: border-box;
+}
+
+.header-parents .parents-col {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 48%;
+}
+
+.header-parents .parents-col--left,
+.header-parents .parents-col--right {
+    text-align: center;
+}
+
+.header-parents .parents-block {
+    display: block;
+}
+
+.header-parents .parents-block--mother {
+    margin-top: 12px;
+}
+
+.header-parents .parents-names {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.header-parents .text-invitan {
+    margin-top: 0;
+    margin-bottom: var(--space);
+    line-height: 2.15;
+}
+
+.header-parents .names-inline {
+    font-size: 26px;
+    line-height: 1.4;
+    margin: 0 0 var(--space);
+}
+
+/* =========================================
+   BOTONES CONSISTENTES (RSVP, UBICACIÓN, EXTRAS)
+   ========================================= */
+
+/* Clase base para todos los botones tipo píldora */
+.btn-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: visible;
+    background-color: var(--color-btn);
+    color: var(--color-text);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 11px;
+    margin: 10px auto;
+    height: 32px;
+    padding: 0 24px;
+    min-width: 126px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-pill:hover {
+    background-color: #dfd8cf;
+}
+
+/* CTA principal: más grande que VER UBICACIÓN / HOSPEDAJE / REGALOS */
+.btn-pill.btn-confirmar {
+    font-size: 13px;
+    height: 40px;
+    padding: 0 28px;
+    min-width: 200px;
+    font-weight: 800;
+}
+
+.btn-pill.btn-confirmar .btn-icon {
+    width: 20px;
+    bottom: -4px;
+    right: -5px;
+}
+
+/* Icono link-arrow: anclado en esquina inferior derecha, sobresale del botón */
+.btn-pill .btn-icon {
+    position: absolute;
+    bottom: -3px;
+    right: -4px;
+    width: 17px;
+    height: auto;
+    filter: drop-shadow(0 1px 2px rgba(107, 88, 74, 0.2));
+}
+
+/* Texto del botón */
+.btn-text {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* Bloque intro: en desktop ocupa el viewport para que el pliegue quede tras Prado Español */
+.intro-block {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Frase "Esperamos..." - ahora en first-screen, encima del botón */
+.rsvp-subtext {
+    margin-top: 0;
+    margin-bottom: var(--space);
+    font-size: 10px;
+}
+
+.section.maps .confirm-subtitle {
+    margin-top: 0;
+    margin-bottom: 12px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: var(--color-text);
+}
+
+.section.maps .confirm-subtitle .bi,
+.section.maps .confirm-subtitle .confirm-subtitle-icon {
+    color: var(--color-text);
+    flex-shrink: 0;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+}
+
+.section.maps .confirm-subtitle-inner {
+    align-items: center;
+}
+
+.section.maps .confirm-subtitle-text {
+    font-size: 12px;
+    flex: 0 1 auto;
+    text-align: center;
+    line-height: 1.5;
+    color: var(--color-text);
+}
+
+.section.maps .confirm-subtitle-text .d-block + .d-block {
+    margin-top: 0.15em;
+}
+
+/* Bloque confirmar + info: mismo fondo que CÓMO LLEGAR */
+.maps-confirm-block {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    background-color: rgba(109, 91, 74, 0.05);
+    padding: 30px 25px 12px;
+}
+
+.maps-confirm-block .confirm-subtitle {
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+/* =========================================
+   GRILLA DE UBICACIONES (IGLESIA Y PRADO)
+   ========================================= */
+.locations-wrapper {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    background-color: rgba(109, 91, 74, 0.05);
+    padding: 8px 25px 30px;
+}
+
+.locations-wrapper .divider-spacer {
+    margin: 0 0 4px;
+}
+
+.locations-inner {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.locations-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    margin-top: 28px;
+}
+
+/* Grilla unificada: ceremonia, fiesta, hospedajes, regalos con mismo espaciado */
+.page-2-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    margin-top: 28px;
+}
+
+.page-2-grid .location-card .btn-pill {
+    margin-bottom: 0;
+}
+
+/* Flecha entre fiesta y hospedajes: compensa con márgenes negativos */
+.scroll-indicator--inline {
+    margin-top: -24px !important;
+    margin-bottom: -24px !important;
+    padding: 2px 0 !important;
+}
+
+/* Un poco más de espacio entre fiesta y hospedajes/regalos */
+.page-2-grid #btn-hospedaje,
+.page-2-grid .extra-block--regalo {
+    margin-top: 16px;
+}
+
+.location-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+a.location-card:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+.img-frame {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin-bottom: 6px;
+}
+
+.location-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: bottom;
+}
+
+.label-mini {
+    font-size: 9px;
+    font-weight: 700;
+    margin-top: 6px;
+}
+
+.label-place {
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+}
+
+.section-title {
+    font-size: 11px;
+    font-weight: 400;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+}
+
+/* =========================================
+   SECCIÓN EXTRAS (HOSPEDAJE Y REGALOS)
+   ======================================== */
+.extras-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+    margin-bottom: 35px;
+}
+
+.extra-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+a.extra-block:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+.img-frame-mini {
+    width: 120px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.icon-extra {
+    max-width: 100%;
+    max-height: 80px;
+    object-fit: contain;
+}
+
+/* Botón directamente debajo de la imagen */
+.extra-block .btn-pill {
+    margin-top: 0;
+}
+
+/* =========================================
+   MÓVIL: primera pantalla hasta Esperamos, botón en siguiente página
+   ========================================= */
+@media (max-width: 767px) {
+    /* Primera pantalla ocupa el viewport: hero + details + Esperamos */
+    .first-screen {
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Divider entre Prado y Esperamos: mismo espacio que el resto (arriba = abajo) */
+    .intro-block:has(+ .divider) .details > .text-caps:last-child {
+        margin-bottom: 0;
+    }
+    .intro-block:has(+ .divider) {
+        margin-bottom: var(--space);
+    }
+    .intro-block + .divider {
+        margin: 0 auto var(--space);
+    }
+
+    .container {
+        padding: 20px 20px;
+    }
+
+    .section.hero {
+        min-height: auto;
+    }
+    .section.hero:not(.header-parents) {
+        margin-top: -20px;
+        padding-top: 12px;
+    }
+
+    .top-icon {
+        width: 40px;
+        margin: 14px auto 24px;
+    }
+
+    h1.names {
+        font-size: 19px;
+        margin: 8px 0 4px;
+    }
+
+    .and {
+        margin: 6px 0 3px;
+    }
+
+    .text-caps {
+        font-size: 9px;
+        margin-bottom: var(--space);
+        line-height: 2.15;
+    }
+    .text-caps.text-smaller {
+        font-size: 11px;
+    }
+    .section.maps .confirm-subtitle-text {
+        font-size: 11px;
+    }
+
+    .main-weekday {
+        font-size: 12px;
+        margin-bottom: 2px;
+    }
+    .main-date {
+        font-size: 13px;
+        margin-bottom: var(--space);
+        white-space: nowrap;
+    }
+    .final-msg {
+        font-size: 11px;
+    }
+
+    :root {
+        --space: 10px;
+    }
+    .first-screen {
+        --space: 14px;
+    }
+
+    .divider {
+        margin: 0 auto var(--space);
+    }
+
+    h1.names:has(+ .divider),
+    .text-caps:has(+ .divider) {
+        margin-bottom: var(--space);
+    }
+
+    .btn-pill {
+        margin: 6px auto;
+    }
+
+    /* Sin padding superior: el fondo oscuro empieza al tope al hacer scroll */
+    .section.maps {
+        padding-top: 0;
+    }
+
+    /* Mayor espaciado vertical entre líneas */
+    body {
+        line-height: 2.34;
+    }
+
+    h1.names {
+        line-height: 1.57;
+    }
+
+    /* Flecha pegada a "Esperamos...", sin espacio extra abajo */
+    .first-screen .rsvp-subtext {
+        margin-bottom: 0;
+    }
+    .scroll-indicator {
+        margin-top: 2px;
+        padding: 2px 0 6px;
+    }
+    /* Ubicaciones: imágenes más bajas y textos/botón más cercanos */
+    .location-card .img-frame {
+        height: 130px;
+        margin-bottom: 4px;
+    }
+    .location-card .label-mini {
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
+    .location-card .label-place {
+        margin-bottom: 4px;
+    }
+.location-card .btn-pill {
+    margin-top: 4px;
+    margin-bottom: 0;
+}
+
+    /* Ceremonia y fiesta: mínimo espacio entre ellos en móvil */
+    .page-2-grid {
+        gap: 24px;
+        margin-top: 12px;
+    }
+    .scroll-indicator .bi {
+        font-size: 17px;
+    }
+    .page-1 {
+        padding-bottom: 12px;
+    }
+
+    .page-2-screen {
+        padding: 20px 0 20px;
+    }
+    .page-2 {
+        padding-bottom: 60px;
+    }
+
+    .header-parents .parents-row {
+        margin-top: 16px;
+        margin-bottom: var(--space);
+        gap: 8px;
+        padding: 0 6px;
+    }
+    .header-parents .parents-names {
+        font-size: 10px;
+    }
+    .header-parents .names-inline {
+        font-size: 22px;
+    }
+
+    /* Reducir min-height del first-screen en móvil para que quepa Esperamos + flecha */
+    .first-screen {
+        min-height: auto;
+    }
+    /* Padres: primera página ocupa todo el viewport en móvil (no mostrar página 2) */
+    .page-1:has(.header-parents) {
+        min-height: 100dvh;
+        min-height: 100vh;
+    }
+    .first-screen:has(.header-parents) {
+        min-height: 100dvh;
+        min-height: 100vh;
+    }
+}
+
+/* =========================================
+   AJUSTES PARA DESKTOP (PC)
+   ========================================= */
+@media (min-width: 768px) {
+    /* Menos espacio para que "Esperamos..." entre en primera vista */
+    :root {
+        --space: 12px;
+    }
+    .first-screen {
+        --space: 16px;
+    }
+
+    /* Sin min-height: todo el primer bloque (hasta Esperamos) fluye y cabe en primera vista */
+    .intro-block {
+        min-height: auto;
+    }
+
+    /* Divider entre Prado y Esperamos: mismo espacio que el resto (arriba = abajo) */
+    .intro-block:has(+ .divider) .details > .text-caps:last-child {
+        margin-bottom: 0;
+    }
+    .intro-block:has(+ .divider) {
+        margin-bottom: var(--space);
+    }
+    .intro-block + .divider {
+        margin: 0 auto var(--space);
+    }
+
+    /* Intro desktop: espaciado compacto para que todo entre (incl. Esperamos) */
+    .intro-block .top-icon {
+        width: 40px;
+        margin: 14px auto 24px;
+    }
+
+    .intro-block h1.names {
+        font-size: 28px;
+        margin: 6px 0 3px;
+    }
+
+    .intro-block .and {
+        margin: 4px 0 2px;
+    }
+
+    .intro-block .text-caps {
+        margin-bottom: var(--space);
+    }
+
+    .intro-block .main-date {
+        margin-bottom: var(--space);
+    }
+
+    .intro-block .divider {
+        margin: 0 auto var(--space);
+    }
+
+    .intro-block h1.names:has(+ .divider),
+    .intro-block .text-caps:has(+ .divider) {
+        margin-bottom: var(--space);
+    }
+
+    .container {
+        max-width: 850px;
+        padding: 25px 50px;
+    }
+
+    /* Line-height más compacto para que todo entre */
+    .intro-block {
+        line-height: 2.15;
+    }
+    .intro-block .text-caps {
+        line-height: 2.15;
+    }
+
+    /* Hero: en desktop no forzar altura completa */
+    .section.hero {
+        min-height: auto;
+    }
+    .section.hero:not(.header-parents) {
+        padding-top: 0;
+    }
+
+    h1.names {
+        font-size: 30px;
+    }
+
+    .locations-wrapper {
+        padding: 8px 25px;
+    }
+
+    .page-2-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px;
+        max-width: 850px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Flecha ocupa toda la fila para que hospedajes y regalos queden en la misma fila */
+    .page-2-grid .scroll-indicator--inline {
+        grid-column: 1 / -1;
+        justify-self: center;
+    }
+
+    .location-card {
+        max-width: 400px;
+        justify-self: center;
+    }
+
+    .locations-inner {
+        max-width: 850px;
+    }
+
+    .img-frame {
+        height: 250px;
+    }
+
+    /* Con regalos: hospedajes y regalos alineados en fila */
+    .page-2-grid:has(.extra-block--regalo) .extra-block {
+        flex: 1;
+        max-width: 280px;
+        justify-self: center;
+    }
+
+    /* Sin regalos: hospedajes centrado solo */
+    .page-2-grid:not(:has(.extra-block--regalo)) .extra-block {
+        grid-column: 1 / -1;
+        justify-self: center;
+        max-width: 280px;
+    }
+
+    .header-parents .parents-names {
+        font-size: 12px;
+    }
+    .header-parents .names-inline {
+        font-size: 30px;
+    }
+    .final-msg {
+        font-size: 15px;
+    }
+
+    .btn-pill.btn-confirmar {
+        font-size: 14px;
+        height: 44px;
+        padding: 0 32px;
+        min-width: 220px;
+    }
+
+    .btn-pill.btn-confirmar .btn-icon {
+        width: 22px;
+    }
+}
+
+.final-msg {
+    font-size: 13px;
+    margin-top: 50px;
+}
+
+/* =========================================
+   MODAL HOSPEDAJES
+   ========================================= */
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.modal.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(107, 88, 74, 0.4);
+    cursor: pointer;
+}
+
+.modal-content {
+    position: relative;
+    background: var(--color-bg);
+    color: var(--color-text);
+    max-width: 400px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 30px 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+}
+
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: var(--color-text);
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.7;
+}
+
+.modal-close:hover {
+    opacity: 1;
+}
+
+.modal-title {
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding: 0 40px;
+    text-align: center;
+}
+
+.modal-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.modal-list li {
+    margin-bottom: 8px;
+}
+
+.modal-list a {
+    color: var(--color-text);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    font-size: 11px;
+}
+
+.modal-list a:hover {
+    opacity: 0.8;
+}
+
+.modal-list span {
+    color: var(--color-text);
+    opacity: 0.8;
+}
