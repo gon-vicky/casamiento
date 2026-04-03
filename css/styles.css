@@ -1084,3 +1084,17 @@ a.extra-block:hover {
     color: var(--color-text);
     opacity: 0.8;
 }
+
+/* =========================================
+   PÁGINAS participacion/ y participacion-padres/ (solo ceremonia)
+   ========================================= */
+.participacion .section.maps .page-2-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.participacion .section.maps .location-card {
+    max-width: 400px;
+    width: 100%;
+}
